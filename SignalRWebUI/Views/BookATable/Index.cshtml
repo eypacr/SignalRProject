@@ -1,0 +1,95 @@
+﻿@model CreateBookingDto
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+@await Component.InvokeAsync("_UILayoutHeadComponentPartial")
+
+<body class="sub_page">
+
+    @await Component.InvokeAsync("_MenuNavbarComponentPartial")
+
+    <section class="book_section layout_padding">
+        <div class="container">
+            <div class="heading_container">
+                <h2>
+                    Rezervasyon Oluşturun
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form_container">
+                        <form method="post">
+                            <div>
+                                <input type="text" class="form-control" placeholder="Adınız Soyadınız" asp-for="Name" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div>
+                                <input type="text" class="form-control" placeholder="Telefon Numaranız" asp-for="Phone" />
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                            <div>
+                                <input type="email" class="form-control" placeholder="Mail Adresiniz" asp-for="Mail" />
+                                <span asp-validation-for="Mail" class="text-danger"></span>
+                            </div>
+                            <div>
+                                <select asp-for="PersonCount" class="form-control nice-select wide">
+                                    <option value="" disabled selected>
+                                        Kaç Kişisiziniz
+                                    </option>
+                                    <option value="1">
+                                        1
+                                    </option>
+                                    <option value="2">
+                                        2
+                                    </option>
+                                    <option value="3">
+                                        3
+                                    </option>
+                                    <option value="4">
+                                        4
+                                    </option>
+                                    <option value="5">
+                                        5
+                                    </option>
+                                    <option value="6">
+                                        6++
+                                    </option>
+                                </select>
+                                <span asp-validation-for="PersonCount" class="text-danger"></span>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <input type="datetime-local" class="form-control" asp-for="Date" />
+                                    <small class="form-text text-muted">Lütfen yıl, ay, gün, saat ve dakika seçiniz.</small>
+                                    <span asp-validation-for="Date" class="text-danger"></span>
+                                </div>
+
+
+                            </div>
+                            <div class="btn_box">
+                                <button>
+                                    Yerinizi Ayırtın
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="map_container ">
+                        <div style="position:relative;overflow:hidden;"><a href="https://yandex.com.tr/harita/org/cumhuriyet_meydani_parki/79938228122/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Cumhuriyet Meydanı Parkı</a><a href="https://yandex.com.tr/harita/104689/kiziltepe/category/park/184106346/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Kızıltepe için Kültür ve eğlence parkları</a><a href="https://yandex.com.tr/harita/104689/kiziltepe/category/square/223334343586/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:28px;">Kızıltepe için Meydan</a><iframe src="https://yandex.com.tr/map-widget/v1/?ll=40.584713%2C37.191860&mode=poi&poi%5Bpoint%5D=40.584081%2C37.191963&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D79938228122&source=serp_navig&z=19.8" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
+
+    @await Component.InvokeAsync("_UILayoutScriptComponentPartial")
+
+</body>
+
+</html>

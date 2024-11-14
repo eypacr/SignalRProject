@@ -1,0 +1,140 @@
+﻿@model List<ResultMenuTableDto>
+@{
+    ViewData["Title"] = "TableListByStatus";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<!-- Gerekli script ve CSS dosyalarını ekliyoruz -->
+<link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/css/animate.css" rel="stylesheet" />
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+
+<!-- Sayfa içeriği -->
+<div class="content">
+    <div class="container-fluid">
+
+        <!-- SignalR ile bağlantı durumu ve masa durumu verilerini alma -->
+        <script type="text/javascript">
+            $(document).ready(() => {
+                var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7199/SignalRHub").build();
+                $("#connstatus").text(connection.state);
+
+
+                connection.start().then(() => {
+                    $("#connstatus").text(connection.state);
+                    setInterval(() => {
+                        connection.invoke("GetMenuTableStatus");
+                    }, 1000);
+
+                }).catch((err) => {
+                    console.log(err)
+                });
+
+
+                connection.on("ReceiveMenuTableStatus", (value) => {
+                    var color = "";
+                    var status = "";
+                    var icon = "";
+                    console.log(value);
+                    let tablehtml = `<div class="row">`;
+                    $.each(value, (index, item) => {
+                        if (item.status == true) {
+                            color = "card card-stats card-success";
+                            status = "Masa Dolu";
+                            icon = "la la-check";
+                        } else {
+                            color = "card card-stats card-danger";
+                            status = "Masa Boş";
+                            icon = "la la-close";
+
+                        }
+                        tablehtml += `
+                                    <div class="col-md-3">
+                                        <div class="${color}">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="icon-big text-center">
+                                                            <i class="${icon}"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-7 d-flex align-items-center">
+                                                        <div class="numbers">
+                                                            <p class="card-category">${item.name}</p>
+                                                            <h4 class="card-title" >${status}</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`
+                    });
+                    tablehtml += `</div>`;
+                    $("#statuslist").html(tablehtml);
+                });
+            });
+        </script>
+
+        <h4 class="page-title">Anlık Masa Durumları Sayfası</h4>
+
+        <!-- Dinamik içerik burada oluşturulacak -->
+        <div id="statuslist"></div>
+    </div>
+</div>
+
+<style>
+    .content {
+        padding: 20px;
+    }
+
+    .page-title {
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-align: center;
+        color: #4a4a4a;
+    }
+
+    .card.card-stats {
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .card.card-stats:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+    .icon-big {
+        font-size: 3rem;
+        color: white;
+    }
+
+    .card-success .icon-big {
+        background-color: #28a745;
+        padding: 15px;
+        border-radius: 50%;
+    }
+
+    .card-danger .icon-big {
+        background-color: #dc3545;
+        padding: 15px;
+        border-radius: 50%;
+    }
+
+    .numbers {
+        font-size: 1.2rem;
+    }
+
+    .card-category {
+        font-size: 0.9rem;
+        color: #6c757d;
+    }
+
+    .card-title {
+        font-weight: bold;
+    }
+    
+</style>

@@ -1,0 +1,104 @@
+﻿@model RegisterDto
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignalR Kayıt</title>
+    <!-- Custom styles-path -->
+    <link rel="stylesheet" href="~/login-screen-html-css-js-master/css/style.css">
+
+    <!-- Font Awesome kit script -->
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+
+    <!-- Google Fonts Open Sans-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="~/login-screen-html-css-js-master/img/html-5.png">
+</head>
+
+<body>
+    <img class="wave" src="~/login-screen-html-css-js-master/img/wave.svg">
+    <div class="container">
+        <div class="img">
+            <img src="~/login-screen-html-css-js-master/img/login-mobile.svg">
+        </div>
+        <div class="login-container">
+            <form method="post">
+                <h2>SignalR Kayıt</h2>
+                <p>Şununla Giriş Yapın:</p>
+                <div class="social">
+                    <div class="social-icons facebook">
+                        <a href="#"><img src="~/login-screen-html-css-js-master/img/facebook.png">Facebook giriş yapın</a>
+                    </div>
+                    <div class="social-icons google">
+                        <a href="#"><img src="~/login-screen-html-css-js-master/img/google.png">Google giriş yapın</a>
+                    </div>
+                </div>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <h5>Adınız</h5>
+                        <input class="input" type="text" id="Name" required asp-for="Name">
+                    </div>
+                </div>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class='fas fa-user-friends'></i>
+                    </div>
+                    <div>
+                        <h5>Soyadınız</h5>
+                        <input class="input" type="text" id="Surname" asp-for="Surname">
+                    </div>
+                </div>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div>
+                        <h5>Kullanıcı Adınız</h5>
+                        <input class="input" type="text" id="Username" required asp-for="Username">
+                    </div>
+                </div>
+                <div class="input-div two">
+                    <div class="i">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h5>Email Adresiniz</h5>
+                        <input class="input" type="email" id="Mail" asp-for="Mail"
+                               required pattern="[^@@]+@@[^@@]+.[a-zA-Z]{2,6}">
+                    </div>
+                </div>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div>
+                        <h5>Şifreniz</h5>
+                        <input class="input" type="password" id="Password" required
+                               asp-for="Password">
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-primary">Kayıt Ol</button>
+                </div>
+                <div class="account">
+                    <p>Zaten bir hesabınız var mı?</p>
+                    <a href="/Login/Index">Giriş Yap</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="~/login-screen-html-css-js-master/js/main.js"></script>
+</body>
+
+</html>

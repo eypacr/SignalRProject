@@ -1,0 +1,110 @@
+﻿@model List<ResultContactDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Ana Sayfa İletişim Bilgi İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">İletişim Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            İletişim alanıyla ilgili işlemleri yapabilirsiniz. Tema bütünlüğü için sadece 1 tane iletişim alanı oluşturmayı unutmayın.
+                        </div>
+                        <div id="contactListContainer"></div>
+                        <div class="table-responsive">
+                            <table class="table mt-3">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Konum</th>
+                                        <th scope="col">Telefon</th>
+                                        <th scope="col">Mail</th>
+                                        <th scope="col">Açıklama</th>
+                                        <th scope="col">Sil</th>
+                                        <th scope="col">Güncelle</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="contactList">
+                                    <!-- Dinamik olarak doldurulacak -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="/Contact/CreateContact/" class="btn btn-outline-primary">Yeni İletişim Yazısı Girişi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<div id="connstatus"></div>
+<script type="text/javascript">
+    $(document).ready(() => {
+        var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7199/SignalRHub").build();
+        $("#connstatus").text(connection.state);
+
+        // Bağlantı durumunu kontrol et
+        connection.start().then(() => {
+            $("#connstatus").text(connection.state);
+            setInterval(() => {
+                connection.invoke("GetList");
+            }, 2000);
+        }).catch((err) => {
+            console.log(err);
+        });
+
+        // İletişim listesi alındığında tabloyu güncelle
+        connection.on("ReceiveContactList", (contacts) => {
+            let tableHtml = '';
+            contacts.forEach((contact) => {
+                tableHtml += `
+                        <tr>
+                            <td><div class="cell-content">${contact.location}</div></td>
+                            <td>${contact.phone}</td>
+                            <td>${contact.mail}</td>
+                            <td><div class="cell-content">${contact.footerDescription}</div></td>
+                            <td><a href="/Contact/DeleteContact/${contact.contactId}" class="btn btn-outline-danger">Sil</a></td>
+                            <td><a href="/Contact/UpdateContact/${contact.contactId}" class="btn btn-outline-success">Güncelle</a></td>
+                        </tr>`;
+            });
+            $("#contactList").html(tableHtml);
+        });
+    });
+</script>
+<style>
+.cell-content {
+        max-height: 100px; /* Yüksekliği sınırlayın */
+        overflow-y: auto; /* Taşan metin için dikey kaydırma */
+        word-break: break-word; /* Kelimeleri hücre içinde kırar */
+        white-space: normal; /* Satır kaydırmayı sağlar */
+    .table td {
+        word-break: break-word; /* Kelimeleri hücre içinde kırar */
+        overflow: hidden; /* Taşmayı gizler */
+        text-overflow: ellipsis; /* Taşan metni '...' ile kısaltır */
+        white-space: nowrap; /* Satır kaydırmayı engeller */
+    }
+
+    .table-responsive {
+        overflow-x: auto; /* Yatay kaydırma sağlar */
+    }
+
+    .card-sub {
+        margin-bottom: 1rem; /* İçeriğin altında boşluk bırakır */
+    }
+
+    .btn-outline-primary {
+        margin-top: 1rem; /* Butona üstten boşluk bırakır */
+    }
+</style>

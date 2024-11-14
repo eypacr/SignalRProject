@@ -1,0 +1,79 @@
+﻿@model UserEditDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container">
+        <h4 class="page-title">Profil İşlemleri</h4>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form method="get">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-light border-bottom-0">
+                            <h5 class="card-title mb-0">Kullanıcı Bilgi Sayfası</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Name" class="form-label">Adınız</label>
+                                <input type="text" class="form-control form-control-sm" asp-for="Name" id="Name" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="Surname" class="form-label">Soyadınız</label>
+                                <input type="text" class="form-control form-control-sm" asp-for="Surname" id="Surname" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="Username" class="form-label">Kullanıcı Adınız</label>
+                                <input type="text" class="form-control form-control-sm" asp-for="Username" id="Username" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="Mail" class="form-label">Mail Adresiniz</label>
+                                <input type="text" class="form-control form-control-sm" asp-for="Mail" id="Mail" readonly>
+                            </div>
+                        </div>
+                        <div class="card-footer text-end">
+                            <a href="/Default/index" class="btn btn-outline-secondary btn-sm">Geri Git</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CSS için eklemeler -->
+<style>
+    .card {
+        border-radius: .375rem;
+        overflow: hidden;
+    }
+
+    .card-header {
+        background-color: #f8f9fa;
+        padding: .75rem 1.25rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .card-footer {
+        background-color: #f8f9fa;
+        padding: .75rem 1.25rem;
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .btn-outline-secondary {
+        border-color: #6c757d;
+        color: #6c757d;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #6c757d;
+            color: #fff;
+        }
+</style>

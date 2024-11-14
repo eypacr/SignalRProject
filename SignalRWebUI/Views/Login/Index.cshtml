@@ -1,0 +1,81 @@
+﻿@model LoginDto
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignalR Giriş Sayfası</title>
+    <!-- Custom styles-path -->
+    <link rel="stylesheet" href="~/login-screen-html-css-js-master/css/style.css">
+
+    <!-- Font Awesome kit script -->
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+
+    <!-- Google Fonts Open Sans-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="~/login-screen-html-css-js-master/img/html-5.png">
+</head>
+
+<body>
+    <img class="wave" src="~/login-screen-html-css-js-master/img/wave.svg">
+    <div class="container">
+        <div class="img">
+            <img src="~/login-screen-html-css-js-master/img/authentication.svg">
+        </div>
+        <div class="login-container">
+            <form method="post">
+                <h2>SignalR Giriş Sayfası</h2>
+                <p>Tekrar Hoşgeldiniz</p>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <h5>Kullanıcı Adınız</h5>
+                        <input class="input" type="text" id="Username" required asp-for="Username">
+                    </div>
+                </div>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div>
+                        <h5>Şifreniz</h5>
+                        <input class="input" type="password" id="Password" required
+                               asp-for="Password">
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-primary">Giriş Yap</button>
+                </div>
+                <div class="others">
+                    <hr>
+                    <p>VEYA</p>
+                    <hr>
+                </div>
+                <div class="social">
+                    <div class="social-icons facebook">
+                        <a href="#"><img src="~/login-screen-html-css-js-master/img/facebook.png">Facebook giriş yapın</a>
+                    </div>
+                    <div class="social-icons google">
+                        <a href="#"><img src="~/login-screen-html-css-js-master/img/google.png">Google giriş yapın</a>
+                    </div>
+                </div>
+                <div class="account">
+                    <p>Üye Değilseniz</p>
+                    <a href="/Register/Index">Kayıt Ol</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="~/login-screen-html-css-js-master/js/main.js"></script>
+</body>
+
+</html>
