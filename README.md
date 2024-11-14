@@ -80,3 +80,43 @@ RapidAPI, farklı hizmet sağlayıcıların sunduğu API'leri tek bir yerden eri
 ## Ana sayfa
 <img src="Docs/Ana_Sayfa.gif">
 <br/>
+
+## Kullanıcı Kayıt Olma ve Giriş Sayfaları
+<img src="Docs/Kayit_Ol.png">
+<br/>
+<img src="Docs/Login.png">
+<br/>
+
+## Admin Paneli
+<img src="Docs/Dashboard.png">
+<br/>
+<img src="Docs/Kategori.png">
+<br/>
+<img src="Docs/Urun.png">
+<br/>
+<img src="Docs/Tum.png">
+<br/>
+<img src="Docs/iptal.png">
+<br/>
+<img src="Docs/indirim.png">
+<br/>
+<img src="Docs/Yorum.png">
+<br/>
+<img src="Docs/Mail1.png">
+<br/>
+<img src="Docs/Mail.png">
+<br/>
+<img src="Docs/Message.png">
+<br/>
+<img src="Docs/QRCode.png">
+<br/>
+<img src="Docs/Masa.png">
+<br/>
+<img src="Docs/Anlik_Masa.png">
+<br/>
+<img src="Docs/OneCikan.png">
+<br/>
+<img src="Docs/Bildirim.png">
+<br/>
+<img src="Docs/istatistik.png">
+<br/>
