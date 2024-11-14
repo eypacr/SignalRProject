@@ -90,6 +90,8 @@ RapidAPI, farklı hizmet sağlayıcıların sunduğu API'leri tek bir yerden eri
 ## Admin Paneli
 <img src="Docs/Dashboard.png">
 <br/>
+<img src="Docs/istatistik.png">
+<br/>
 <img src="Docs/Kategori.png">
 <br/>
 <img src="Docs/Urun.png">
@@ -118,5 +120,4 @@ RapidAPI, farklı hizmet sağlayıcıların sunduğu API'leri tek bir yerden eri
 <br/>
 <img src="Docs/Bildirim.png">
 <br/>
-<img src="Docs/istatistik.png">
-<br/>
+
