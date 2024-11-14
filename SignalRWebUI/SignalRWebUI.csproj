@@ -31,7 +31,7 @@
   </ItemGroup>
 	<ItemGroup>
 		<Reference Include="QRCoder">
-			<HintPath>C:\Users\Acar\source\repos\Gitlab\SignalRProject\QRCoder.dll</HintPath>
+			<HintPath>C:\Users\Acar\source\repos\Github\SignalRProject\QRCoder.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 </Project>
